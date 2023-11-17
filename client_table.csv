@@ -1,0 +1,5 @@
+id_client;date_passage;nb_enfant;ville;cat_sociopro
+1;15/05/2023;0;Paris;etudiant
+2;16/05/2023;1;Bordeaux;salarie
+3;15/05/2024;2;Nice;ouvrier
+4;17/05/2023;0;Nantes;enseignant
