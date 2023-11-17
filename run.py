@@ -21,7 +21,7 @@ conn = psycopg2.connect(
 )
 
 app = Flask(__name__)
-app.config.from_object(DevelopmentConfig)
+app.config.from_object(ProductionConfig)
 bootstrap = Bootstrap(app)
 
 db.init_app(app)
@@ -31,9 +31,11 @@ with app.app_context():
     db.create_all()
 
 #routes pour l'accès aux différentes pages 
-@app.route('/index')
+@app.route('/')
 def index():
     csv_path='client_table.csv'
+    csv_path='collectes_table.csv'
+
     if csv_path:
         # Lire le fichier CSV avec pandas
             df = pd.read_csv(csv_path, sep=";")

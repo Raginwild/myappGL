@@ -9,3 +9,4 @@ Flask-Bootstrap
 Flask-Migrate
 pytest
 Flask-Testing
+gunicorn
