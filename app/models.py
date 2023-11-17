@@ -12,7 +12,6 @@ class User(db.Model):
 
 class Client(db.Model):
     id_client = db.Column(db.Integer, primary_key=True)
-    nom = db.Column(db.String)
     date_passage = db.Column(db.DateTime, default=datetime.utcnow)
     nb_enfant = db.Column(db.Integer)
     ville = db.Column(db.String)
@@ -22,7 +21,7 @@ class Client(db.Model):
 class Collecte(db.Model):
     id_collecte = db.Column(db.Integer, primary_key=True)
     commandes = db.relationship('Client', backref='collecte', lazy=True)
-    id_cli = db.Column(db.Integer, db.ForeignKey('client.id_cli'), nullable=False)
+    id_client = db.Column(db.Integer, db.ForeignKey('client.id_client'), nullable=False)
     produits = db.relationship('Produit', backref='collecte', lazy=True)
 
 class Produit(db.Model):

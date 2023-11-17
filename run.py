@@ -1,6 +1,6 @@
 # app.py
 # fichier back-end de l'application 
-from flask import Flask
+from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from model_insert import insert_csv
 from datetime import datetime
@@ -41,22 +41,24 @@ def index():
             # Ajouter les données à la base de données
             cursor = conn.cursor()
 
+            
             for index, row in df.iterrows():
+                id_row = Client.query.filter_by(id_client=row['id_client']).first()
+                if not id_row:
                 # Assurez-vous d'adapter ces colonnes en fonction de votre schéma de base de données
-                cursor.execute("INSERT INTO client (id_client, date_passage, nb_enfant, ville, cat_sociopro)\
-                                VALUES (%s, %s, %s, %s, %s);", (row['id_client'], row['date_passage'],row['nb_enfant'], row['ville'],\
-                                                                row['cat_sociopro']))
+                    cursor.execute("INSERT INTO client (id_client, date_passage, nb_enfant, ville, cat_sociopro)\
+                                    VALUES (%s, %s, %s, %s, %s);", (row['id_client'], row['date_passage'],row['nb_enfant'], row['ville'],\
+                                                                    row['cat_sociopro']))
 
             conn.commit()
             cursor.close()
 
-            return "Données importées avec succès dans la base de données."
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM votre_table;")
+    cursor.execute("SELECT * FROM client;")
     data = cursor.fetchall()
     cursor.close()
 
-    columns = ['client_id', 'nom', 'prenom', 'sexe', 'achat_id', 'prix']
+    columns = ['id_client', 'date_passage', 'nb_enfant', 'ville', 'cat_sociopro']
     df = pd.DataFrame(data, columns=columns)
 
     # Agrégation par ville
@@ -67,7 +69,7 @@ def index():
 
     fig.write_html('templates/graphique.html')
 
-    return render_template('./statics/index.html', data=data)
+    return render_template('index.html', data=data)
 
 #à venir
 #@app.route('/login')
