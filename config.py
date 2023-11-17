@@ -10,7 +10,7 @@ class Config:
 import os
 
 class Config:
-    SECRET_KEY = 'votre_cle_secrete'  # Changez cela par une valeur aléatoire et sécurisée
+    SECRET_KEY = '' #à venir
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 class DevelopmentConfig(Config):
