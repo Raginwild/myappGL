@@ -1,7 +1,10 @@
 #chargement de données fictives dans la database
-def insert_csv(file,engine):
+
+def get_csv(file):
     df_insert=pd.read_csv('user_test.csv', sep=';')
-    print(df_insert)
+
+def insert_csv(file,engine):
+    df_insert=get_csv(file)
     df_insert.to_sql('utilisateurs', engine, index=False, if_exists='append')
     print('les lignes ont bien été enregistrées')
 

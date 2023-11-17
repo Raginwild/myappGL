@@ -1,28 +1,19 @@
-# app.py
-# fichier back-end de l'application 
-from flask import Flask
+#modèles (tables) d'utilisateur avec ORM
 from flask_sqlalchemy import SQLAlchemy
-from model_insert import insert_csv
 from datetime import datetime
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = f"postgresql://{DB_PARAM.get('user')}:{DB_PARAM.get('password')}@{DB_PARAM.get('host')}/{DB_PARAM.get('dbname')}"
-db = SQLAlchemy(app)
+db = SQLAlchemy()
 
-#modèles (tables) d'utilisateur avec ORM
 class User(db.Model):
     id_user = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
-
-class Utilisateur(db.Model):
-    id_user = db.Column(Integer, primary_key=True)
-    nom = db.Column(String)
-    email = db.Column(String, unique=True)
+    email = db.Column(db.String, unique=True)
+    id_fonction = db.Column(db.String, unique=True)
 
 class Client(db.Model):
-    id_cli = db.Column(db.Integer, primary_key=True)
+    id_client = db.Column(db.Integer, primary_key=True)
     nom = db.Column(db.String)
-    date_passage = nb.Column(db.Datetime, default=datetime.utcnow)
+    date_passage = db.Column(db.DateTime, default=datetime.utcnow)
     nb_enfant = db.Column(db.Integer)
     ville = db.Column(db.String)
     cat_sociopro = db.Column(db.String)
@@ -38,15 +29,3 @@ class Produit(db.Model):
     id_produit = db.Column(db.Integer, primary_key=True)
     prix = db.Column(db.Float, nullable=False)
     id_collecte = db.Column(db.Integer, db.ForeignKey('collecte.id_collecte'), nullable=False)
-
-#insertions des données socles dans la base de données SQL
-
-#routes pour l'accès aux différentes pages 
-@app.route('/index')
-
-
-@app.route('/login')
-
-if __name__ == '__main__':
-    db.create_all()
-    app.run(debug=True)
