@@ -10,3 +10,5 @@ Flask-Migrate
 pytest
 Flask-Testing
 gunicorn
+seaborn
+numpy

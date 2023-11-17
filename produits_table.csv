@@ -1,5 +1,5 @@
-id_produit;cat_produit;prix_produit
-1;vetement;75,6
-2;accessoire;75
-3;bijoux;20
-4;chapeau;15
+id_produit;cat_produit;prix
+1;vetement;75.6;1
+2;accessoire;75.0;3
+3;bijoux;20.3;2
+4;chapeau;15.29;1

@@ -26,5 +26,6 @@ class Collecte(db.Model):
 
 class Produit(db.Model):
     id_produit = db.Column(db.Integer, primary_key=True)
+    cat_produit = db.Column(db.String(90))
     prix = db.Column(db.Float, nullable=False)
     id_collecte = db.Column(db.Integer, db.ForeignKey('collecte.id_collecte'), nullable=False)
