@@ -2,15 +2,20 @@
 # fichier back-end de l'application 
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
+from flask_bootstrap import Bootstrap
+
 from model_insert import insert_csv
+
 from datetime import datetime
 from app.statics.db_set import DB_PARAM
-import pandas as pd
+
 import psycopg2
 import plotly.express as px
-from flask_bootstrap import Bootstrap
+
 from app.models import db, User, Client, Collecte,Produit  #importation du db depuis le fichier models.py
 from config import DevelopmentConfig, ProductionConfig #fichier de configuration de l'application
+
+import pandas as pd
 
 #traitement des graphiques plus poussés
 import seaborn as sns
